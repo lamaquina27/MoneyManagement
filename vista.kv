@@ -1,0 +1,16 @@
+#:kivy 2.3.0
+
+<MainScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 0, 0, 1, 0.5  # Fondo azul semi-transparente (corrigiendo el color)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            text: "Hola Mundo"
+            font_size: "30sp"
+            color: 1, 1, 1, 1  # Color del texto (blanco)
