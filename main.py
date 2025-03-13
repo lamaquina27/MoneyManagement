@@ -1,11 +1,16 @@
 from kivymd.app import MDApp
-from kivy.uix.boxlayout import BoxLayout
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivy.uix.screenmanager import ScreenManager,Screen
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.config import Config
-
-
-class MainScreen(BoxLayout):
+class Manager(ScreenManager):
+    pass
+class StatsScreen(Screen):
+    pass
+class PieApp(MDBoxLayout):
+    pass
+class MainLayout(MDBoxLayout):
     pass
 
 class MyApp(MDApp):
@@ -15,7 +20,7 @@ class MyApp(MDApp):
         Config.set('graphics', 'fullscreen', 'auto')  # Pantalla completa en móviles
 
         Builder.load_file("vista.kv")
-        return MainScreen()
+        return MainLayout()
  
 if __name__ == "__main__":
     MyApp().run()

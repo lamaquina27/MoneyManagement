@@ -1,15 +1,128 @@
 #:kivy 2.3.0
+<StatsScreen>:
+    MDBoxLayout:
+        orientation:"vertical"
+        MDLabel:
+            text: "Hola desde StatsScreen"
+            halign: "center"
+<Manager>:
+    StatsScreen:
+        id:stats
+<PieApp>:
+    size_hint: (1, 0.15)  
 
-<MainScreen>:
-    BoxLayout:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 0.5  
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    MDGridLayout:
+        cols: 3
+        size_hint: (1, 1)
+        spacing: "2dp"  
+
+        # Botón 1
+        MDRaisedButton:
+            size_hint: (1, 1)
+            md_bg_color: 0, 0, 0, 0  # Botón completamente transparente
+            elevation: 0  # Elimina la sombra del botón 
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: "4dp"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDIcon:
+                    pos_hint: { 'top' : .5, 'right': .55}
+                    icon: "imagenes/bill.png"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1  # Color blanco
+                    font_size: "30sp" 
+                    halign: "center"
+
+                MDLabel:
+                    text: "Detalles"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0,0,0, 1  
+                    font_style: "H6"
+                    bold: True
+                    font_size: "10sp" 
+
+        # Botón 2
+        MDRaisedButton:
+            size_hint: (1, 1)
+            md_bg_color: 0, 0, 0, 0 
+            elevation: 0  
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: "4dp"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDIcon:
+                    pos_hint: { 'top' : .95, 'right': .55}
+                    icon: "imagenes/stats.png"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1  
+                    font_size: "30sp"
+                    halign: "center"
+
+                MDLabel:
+                    text: "Stats"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0,0,0, 1  
+                    font_style: "H6"
+                    bold: True
+                    font_size: "10sp"
+
+        # Botón 3
+        MDRaisedButton:
+            size_hint: (1, 1)
+            md_bg_color: 0, 0, 0, 0  
+            elevation: 0  
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: "4dp"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDIcon:
+                    
+                    pos_hint: { 'center_y' : 1, 'right': .55}
+                    icon: "imagenes/money.png"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1  
+                    font_size: "30sp"
+                MDLabel:
+                    text: "Gastos"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0,0,0, 1  
+                    font_style: "H6"
+                    bold: True
+                    font_size: "10sp"
+
+<MainLayout>:
+    MDBoxLayout:
         orientation: "vertical"
         canvas.before:
             Color:
-                rgba: 0, 0, 1, 0.5  # Fondo azul semi-transparente (corrigiendo el color)
+                rgba: 0,0,0, 0.5  
             Rectangle:
                 size: self.size
                 pos: self.pos
-        Label:
-            text: "Hola mundito"
-            font_size: "30sp"
-            color: 1, 1, 1, 1  # Color del texto (blanco)
+        # Contenedor de pantallas dinámicas
+        Manager:
+            id: manager
+
+        # Pie de Página (Siempre visible)
+        PieApp:
+            id: pieApp
+
