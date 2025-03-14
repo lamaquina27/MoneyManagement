@@ -1,139 +1,118 @@
 #:kivy 2.3.0
 <StatsScreen>:
     MDBoxLayout:
-        orientation:"vertical"
+        orientation: "vertical"
         MDLabel:
             text: "Hola desde StatsScreen"
             halign: "center"
+
 <Manager>:
     StatsScreen:
-        id:stats
+        id: stats
+
 <PieApp>:
-    size_hint: (1, 0.15)  
+    id: pieApp
+    size_hint: (1, 0.15)
 
     canvas.before:
         Color:
-            rgba: 1, 1, 1, 0.5  
+            rgba: 1, 1, 1,1 
         Rectangle:
             size: self.size
             pos: self.pos
+
     canvas.after:
         Color:
-            rgba: root.indicator_color  # Se cambia dinámicamente en Python
+            rgba: root.indicator_color
         RoundedRectangle:
-            size: (self.width / 6), 3  # 🔹 Reducimos el ancho de la barra (antes /3, ahora /6)
+            size: (self.width / 6), 3
             pos: (self.x + (root.indicator_pos * self.width / 3)) + (self.width / 6) / 2, self.y + 3
             radius: [4, 4, 4, 4]
+
     MDGridLayout:
         cols: 3
         size_hint: (1, 1)
-        spacing: "2dp"  
+        spacing: "0dp"
 
-        # Botón 1
-        MDRaisedButton:
-            id: btn_detalles
+        # Botón 1 - Detalles
+        MDBoxLayout:
+            orientation: "vertical"
             size_hint: (1, 1)
-            md_bg_color: 0, 0, 0, 0  # Botón completamente transparente
-            elevation: 0  # Elimina la sombra del botón 
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            on_press:root.select_tab("detalles")
-            
-            
-            MDBoxLayout:
-                orientation: "vertical"
-                padding: "4dp"
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-                MDIcon:
-                    pos_hint: { 'top' : .5, 'right': .55}
-                    icon: "imagenes/bill.png"
-                    theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1  
-                    font_size: "30sp" 
-                    halign: "center"
+            MDIconButton:
+                icon:"cash-100" 
+                on_press: pieApp.select_tab("detalles")
+                theme_icon_color: "Custom"
+                icon_color: 0,0,0, 1  # negro (RGBA)
+                user_font_size: "50dp"  
+                md_bg_color: (0, 0, 0, 0)  # Quita el fondo
+                size_hint: 1, 1
 
-                MDLabel:
-                    text: "Detalles"
-                    halign: "center"
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0, 1  
-                    font_style: "H6"
-                    bold: True
-                    font_size: "10sp" 
+            MDLabel:
+                text: "Detalles"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                font_size: "12sp"
 
-            
-
-        # Botón 2
-        MDRaisedButton:
-            id: btn_stats
+        # Botón 2 - Stats
+        MDBoxLayout:
+            orientation: "vertical"
             size_hint: (1, 1)
-            md_bg_color: 0, 0, 0, 0 
-            elevation: 0  
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            on_press:root.select_tab("stats")
-        
-            MDBoxLayout:
-                orientation: "vertical"
-                padding: "4dp"
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-                MDIcon:
-                    pos_hint: { 'top' : .95, 'right': .55}
-                    icon: "imagenes/stats.png"
-                    theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1  
-                    font_size: "30sp"
-                    halign: "center"
+            MDIconButton:
+                icon:"finance"
+                on_press: pieApp.select_tab("stats")
+                theme_icon_color: "Custom"
+                icon_color: 0,0,0, 1  # negro (RGBA)
+                user_font_size: "50dp"
+                md_bg_color: (0, 0, 0, 0)
+                size_hint: 1, 1
+                
 
-                MDLabel:
-                    text: "Stats"
-                    halign: "center"
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0, 1  
-                    font_style: "H6"
-                    bold: True
-                    font_size: "10sp"
+            MDLabel:
+                text: "Stats"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                font_size: "12sp"
 
-        # Botón 3
-        MDRaisedButton:
-            id: btn_gastos
+        # Botón 3 - Gastos
+        MDBoxLayout:
+            orientation: "vertical"
             size_hint: (1, 1)
-            md_bg_color: 0, 0, 0, 0  
-            elevation: 0  
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            on_press:root.select_tab("gastos")
-            MDBoxLayout:
-                orientation: "vertical"
-                padding: "4dp"
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-                MDIcon:
-                    pos_hint: { 'center_y' : 1, 'right': .55}
-                    icon: "imagenes/money.png"
-                    theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1  
-                    font_size: "30sp"
+            MDIconButton:
+                icon:"account"
+                on_press: pieApp.select_tab("gastos")
+                theme_icon_color: "Custom"
+                icon_color: 0,0,0, 1  # negro (RGBA)
+                user_font_size: "50dp"
+                md_bg_color: (0, 0, 0, 0)
+                size_hint: 1, 1
+                
 
-                MDLabel:
-                    text: "Gastos"
-                    halign: "center"
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0, 1  
-                    font_style: "H6"
-                    bold: True
-                    font_size: "10sp"
+            MDLabel:
+                text: "Gastos"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                font_size: "12sp"
 
-            
 
 <MainLayout>:
     MDBoxLayout:
         orientation: "vertical"
         canvas.before:
             Color:
-                rgba: 0,0,0, 0.5  
+                rgba: 0, 0, 0, 0.5
             Rectangle:
                 size: self.size
                 pos: self.pos
+
         # Contenedor de pantallas dinámicas
         Manager:
             id: manager
@@ -141,4 +120,3 @@
         # Pie de Página (Siempre visible)
         PieApp:
             id: pieApp
-

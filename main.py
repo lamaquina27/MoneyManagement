@@ -1,7 +1,9 @@
 from kivymd.app import MDApp
+
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.screenmanager import ScreenManager,Screen
 from kivy.lang import Builder
+
 from kivy.core.window import Window
 from kivy.config import Config
 from kivy.properties import NumericProperty, ListProperty
