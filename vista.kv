@@ -1,14 +1,116 @@
 #:kivy 2.3.0
+<BaseScreen>
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            text:'hola'
+<ManagerScreenStats>
+    BaseScreen:
+        id:name
 <StatsScreen>:
     MDBoxLayout:
         orientation: "vertical"
-        MDLabel:
-            text: "Hola desde StatsScreen"
-            halign: "center"
+        
+        
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint:(1, 0.1)  # Ajusta el ancho del menú de navegación
+            md_bg_color: 1,1, 1, 1  # Color de fondo gris oscuro 
+            
+            MDGridLayout:  # Contenedor exclusivo para los botones
+                cols:3
+                size_hint: (.8, .7)  # Se ajustará al tamaño del contenido
+                  # Se ajusta al tamaño de los botones
+                
+                md_bg_color: .3,.3,.3, .5
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  # Color de fondo
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [5]
+                Button:
+                    id:btnStats
+                    size_hint:(1,1)
+                    
+                    
+                    on_release:root.seleccion("btnStats")
+                    background_normal:""
+                    background_down:''
+                    background_color:(0/255, 0/255, 0/255,0) 
+                    text: "Stats"
+                    color: 0, 0, 0, 1  # Texto negro
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 0  # Color de fondo del botón
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+                Button:
+                    id:btnBudgets
+                    size_hint:(1,1)
+                    
+                    on_release:root.seleccion("btnBudgets")
+                    text: "Budgets"
+                    color:0,0,0,1
+                    background_normal:''
+                    background_down: ''
+                    background_color:(0/255, 0/255, 0/255,0) 
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 0  # Color de fondo del botón
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+                Button:
+                    id:btnNotes
+                    size_hint:(1,1)
+                    
+                    on_release:root.seleccion("btnNotes")
+                    background_normal:''
+                    background_down: ''
+                    background_color:(0/255, 0/255, 0/255,0)
+                    text:"Notes"
+                    color:0,0,0,1
+                    canvas.before:
+                        Color:
+                            
+                            rgba: 0, 0, 0, 0  # Color de fondo del botón
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+            MDBoxLayout:
+                orientation:'vertical'
+                MDLabel:
+                    text:"holas"
 
+        MDBoxLayout:
+            orientation:"vertical"
+            ManagerScreenStats:
+                BaseScreen:
+
+<InicioScreen>
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            text:"hola DESDE INICIOs"
+<CunetaScreen>
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            text:"holas DEDES CUENTA"
 <Manager>:
+    
+    InicioScreen:
+        name:"inicio"
     StatsScreen:
-        id: stats
+        name:"stats"
+    CunetaScreen:
+        name:"cuenta"
 
 <PieApp>:
     id: pieApp
@@ -43,6 +145,7 @@
             MDIconButton:
                 icon:"cash-100" 
                 on_press: pieApp.select_tab("detalles")
+                on_release:app.change_screen("inicio")
                 theme_icon_color: "Custom"
                 icon_color: 0,0,0, 1  # negro (RGBA)
                 user_font_size: "50dp"  
@@ -65,6 +168,7 @@
             MDIconButton:
                 icon:"finance"
                 on_press: pieApp.select_tab("stats")
+                on_release:app.change_screen("stats")
                 theme_icon_color: "Custom"
                 icon_color: 0,0,0, 1  # negro (RGBA)
                 user_font_size: "50dp"
@@ -88,6 +192,7 @@
             MDIconButton:
                 icon:"account"
                 on_press: pieApp.select_tab("gastos")
+                on_release:app.change_screen("cuenta")
                 theme_icon_color: "Custom"
                 icon_color: 0,0,0, 1  # negro (RGBA)
                 user_font_size: "50dp"
